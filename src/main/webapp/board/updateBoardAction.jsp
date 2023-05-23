@@ -4,7 +4,8 @@
 <%@ page import = "java.sql.*" %>
 <%
 	// 1.컨트롤러 계층
-	response.setCharacterEncoding("utf-8");
+	// 인코딩
+	request.setCharacterEncoding("utf-8");
 	// 요청값중 null이거나 공백이 있으면 게시글 추가폼으로 다시 보냄
 	// 오류메세지를 보낼 변수 msg
 	String msg = "";
