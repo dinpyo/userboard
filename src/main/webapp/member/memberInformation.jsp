@@ -50,29 +50,25 @@
 	<!-- Bootstrap CSS -->
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css">
 </head>
-<body>
+<body style="background-color: #FAF3F0;">
 <div class="container">
 	<div>
 		<jsp:include page="/inc/mainmenu.jsp"></jsp:include>
 	</div>
 	<br><br><br>
 	<div class="text-center">
-		<h1>
-			<span class="table-danger">
-				&nbsp; 회원 상세 정보 &nbsp;
-			</span>
-		</h1>
+		<h1>회원 상세 정보</h1>
 	</div>
 	<br>	
 	<br>
 	<div style="text-align: center;">
 		<table class="table table-bordered">
-			<tr class="table-danger">
-				<th class="table-danger">아이디</th>
-				<th class="table-danger">생성일</th>
-				<th class="table-danger">수정일</th>
+			<tr style="background-color: #DBC4F0;">
+				<th>아이디</th>
+				<th>생성일</th>
+				<th>수정일</th>
 			</tr>
-			<tr>
+			<tr style="background-color: white;">
 				<td>
 					<%=m.getMemberId()%>
 				</td>
@@ -84,21 +80,25 @@
 				</td>
 			</tr>
 			
-			<tr>
-				<th class="table-danger">
-					<a href="<%=request.getContextPath()%>/member/updateMemberForm.jsp">
+			<tr style="background-color: #DBC4F0;">
+				<th >
+					<a style="color: black;" href="<%=request.getContextPath()%>/member/updateMemberForm.jsp">
 						비밀번호 변경
 					</a>
 				</th>
-				<td class="table-danger">&nbsp;</td>
-				<th class="table-danger">
-					<a href="<%=request.getContextPath()%>/member/deleteMemberForm.jsp">
+				<td>&nbsp;</td>
+				<th>
+					<a style="color: black;" href="<%=request.getContextPath()%>/member/deleteMemberForm.jsp">
 						회원탈퇴
 					</a>
 				</th>
 			</tr>
 		</table>
-	</div>	
+	</div>
+	<br><br><br><br><br><br><br>	
+	<div>
+		<jsp:include page="/inc/copyright.jsp"></jsp:include>
+	</div>
 	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
 	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js"></script>

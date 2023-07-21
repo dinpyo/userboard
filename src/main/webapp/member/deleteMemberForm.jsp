@@ -27,18 +27,14 @@
 	<!-- Bootstrap CSS -->
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css">
 </head>
-<body>
+<body style="background-color: #FAF3F0;">
 <div class="container">
 	<div>
 		<jsp:include page="/inc/mainmenu.jsp"></jsp:include>
 	</div>
 	<br><br><br>
 	<div class="text-center">
-		<h1>
-			<span class="table-danger">
-				&nbsp; 회원탈퇴 &nbsp;
-			</span>	
-		</h1>
+		<h1>&nbsp; 회원탈퇴 &nbsp;</h1>
 	<br>
 		<div>
 			<h3>
@@ -57,15 +53,15 @@
 	
 	<form action="<%=request.getContextPath()%>/member/deleteMemberAction.jsp" method="post" id="submit">
 		<table class="table table-bordered">
-			<tr class="table-danger">
-				<th class="table-danger">접속중인 아이디</th>
-				<td class="table-danger">
+			<tr style="background-color: #DBC4F0;">
+				<th>접속중인 아이디</th>
+				<td>
 					<%=loginMemberId%>
 				</td>
 			</tr>
-			<tr class="table-danger">
-				<th class="table-danger">비밀번호 입력 :</th>
-				<td class="table-danger">
+			<tr style="background-color: #DBC4F0;">
+				<th>비밀번호 입력 :</th>
+				<td>
 					<input type="password" name="password">
 				</td>
 			</tr>
@@ -73,8 +69,8 @@
 	</form>
 	<br>
 	<form action="<%=request.getContextPath()%>/member/memberInformation.jsp" method="post" id="cancle"></form>
-	<button type="submit" form="submit">탈퇴</button>
-	<button type="submit" form="cancle">취소</button>
+	<button style="background-color: #DBC4F0;" type="submit" form="submit">탈퇴</button>
+	<button style="background-color: #DBC4F0;" type="submit" form="cancle">취소</button>
 	</div>
 	<br><br><br><br><br><br><br>
 	<div>

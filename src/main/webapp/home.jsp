@@ -143,7 +143,7 @@
 	<!-- Bootstrap CSS -->
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css">
 </head>
-<body>
+<body style="background-color: #FAF3F0;">
 <div class="container">
 	<div class="row">
 		<!-- 메인메뉴(가로) -->
@@ -156,13 +156,13 @@
 		<!-- 서브메뉴(세로) subMenuList모델을 출력 -->
 		<div class="col-sm-2">	
 			<div style="text-align: center;">
-				<table class="table table-bordered">
+				<table class="table">
 					<%
 						for(HashMap<String, Object> m : subMenuList) {
 					%>	
-						<tr class="table-danger">	
+						<tr style="background-color: #DBC4F0;">	
 							<td>					<!-- 자바문 (String),(Integer)생략가능 -->
-								<a href ="<%=request.getContextPath()%>/home.jsp?localName=<%=(String)m.get("localName")%>">
+								<a style="color: black;" href ="<%=request.getContextPath()%>/home.jsp?localName=<%=(String)m.get("localName")%>">
 									<%=(String)m.get("localName")%>(<%=(Integer)m.get("cnt")%>)</a>
 							</td>
 						</tr>
@@ -188,60 +188,57 @@
 				%>		
 						<form action="<%=request.getContextPath()%>/member/loginAction.jsp" method="post">
 							<table class="table table-borderless">
-								<tr class="table-danger">
-									<th class="table-danger">아이디</th>
-									<td class="table-danger"><input type="text" name="memberId"></td>
+								<tr style="background-color: #DBC4F0;">
+									<th>아이디</th>
+									<td><input type="text" name="memberId"></td>
 								</tr>
-								<tr class="table-danger">
-									<th class="table-danger">패스워드</th>
-									<td class="table-danger"><input type="password" name="memberPw"></td>
+								<tr style="background-color: #DBC4F0;">
+									<th>패스워드</th>
+									<td><input type="password" name="memberPw"></td>
 								</tr>
-								<tr class="table-danger">
-									<td colspan="2" class="table-danger">
+								<tr style="background-color: #DBC4F0;">
+									<td colspan="2">
 										<button type="submit" style="float:right;">로그인</button>
 									</td>
 								</tr>
 							</table>
 						</form>
 						
-						<div style="text-align: center;" class="table-danger">
+						<div style="text-align: center; background-color: #DBC4F0;">
 							<h3>개발기술</h3>
+							<br><br><br><br><br><br><br><br><br>
+							
 						</div>	
 				<%	
 					} else {
 				%>
-	     		<h2>
-		     		<span class="table-danger">
-		     			현재 <%=session.getAttribute("loginMemberId")%>으로 접속중
-		     		</span>
-	     		</h2>
+	     				<h2><%=session.getAttribute("loginMemberId")%>으로 접속중</h2>
 	     		<!-- 메인메뉴(가로) -->
 				<!-- 서버기술이기 때문에 ﹤% request...%﹥를 쓸 필요가 없음 -->
-	    	 <%
-	        	}
-	     	%>   
+	    	 	<%
+	        		}
+	     		%>   
 			</div>
-			<br>
-			
+			<br>	
 		</div>
 	</div>
 	<br>	
 		
 	<!---[시작] boardList--------------------------------------------------->
 	<div class="col-sm-13" style="text-align: center;">	
-				<table class="table table-bordered">
-					<tr>
-						<th class="table-danger">지역 이름</th>
-						<th class="table-danger">글 제목</th>
-						<th class="table-danger">생성일</th>
+				<table class="table">
+					<tr style="background-color: #DBC4F0;">
+						<th>지역 이름</th>
+						<th>글 제목</th>
+						<th>생성일</th>
 					</tr>
 					<%
 						for(Board b : boardList) {
 					%>
-							<tr>
+							<tr style="background-color: white;">
 								<td><%=b.getLocalName()%></td>
-								<td>
-									<a href="<%=request.getContextPath()%>/board/boardOne.jsp?boardNo=<%=b.getBoardNo()%>">
+								<td> 
+									<a style="color: black;" href="<%=request.getContextPath()%>/board/boardOne.jsp?boardNo=<%=b.getBoardNo()%>">
 										<%=b.getBoardTitle()%>
 									</a>
 								</td>
@@ -254,7 +251,7 @@
 		</table>		
 	</div>
 	<!---[끝]boardList--------------------------------------------------->
-	
+	<br>
 	
 	<div class="container mt-3">
 		<ul class="pagination justify-content-center" style="margin:20px 0">
@@ -263,26 +260,26 @@
 				if(currentPage > pageCount){
 			%>
 		   			<li class="page-item">
-		   				<a class="page-link text-dark" href="<%=request.getContextPath()%>/home.jsp?currentPage=<%=startPage-10 %>&localName=<%=localName%>">
-		   					Previous
+		   				<a class="page-link text-dark" style="background-color: #DBC4F0;" href="<%=request.getContextPath()%>/home.jsp?currentPage=<%=startPage-10%>&localName=<%=localName%>">
+		   					이전
 		   				</a>
 		   			</li>
 		   	<%
 				}
-		        for(int i = startPage; i <= endPage; i++){
+		        for(int i = startPage; i <= endPage; i++){ //현재페이지
 		        	if(i==currentPage){
 		    %>
 		        		<li class="page-item active">
-		        			<a class="page-link text-dark" href="<%=request.getContextPath()%>/home.jsp?currentPage=<%=i %>&localName=<%=localName%>">
-		        				<%=i %>
+		        			<a class="page-link text-dark" style="background-color: #DBC4F0;" href="<%=request.getContextPath()%>/home.jsp?currentPage=<%=i%>&localName=<%=localName%>">
+		        				<%=i%>
 		        			</a>
 		        		</li>
 		    <%
 		        	}else{
 		   	%>
 		       		<li class="page-item">
-		       			<a class="page-link text-dark" href="<%=request.getContextPath()%>/home.jsp?currentPage=<%=i %>&localName=<%=localName%>">
-		       				<%=i %>
+		       			<a class="page-link text-dark" style="background-color: white;" href="<%=request.getContextPath()%>/home.jsp?currentPage=<%=i %>&localName=<%=localName%>">
+		       				<%=i%>
 		       			</a>
 		       		</li>
 				<%
@@ -292,8 +289,8 @@
 		    	if(currentPage < (lastPage-pageCount+1)){
 				%>
 				<li class="page-item">
-					<a class="page-link text-dark" href="<%=request.getContextPath()%>/home.jsp?currentPage=<%=endPage+1 %>&localName=<%=localName%>">
-						Next
+					<a class="page-link text-dark" style="background-color: #DBC4F0;" href="<%=request.getContextPath()%>/home.jsp?currentPage=<%=endPage+1%>&localName=<%=localName%>">
+						다음
 					</a>
 				</li>
 			<%
@@ -306,8 +303,8 @@
 	<div>
 		<!-- include 페이지 : Copyright &copy; 구디아카데미 -->
 		<jsp:include page="/inc/copyright.jsp"></jsp:include>
-	</div>
-		
+	</div>	
+	<br>
 </div>
 </body>
 </html>

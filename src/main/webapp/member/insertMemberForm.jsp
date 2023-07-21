@@ -18,7 +18,7 @@
 	<!-- Bootstrap CSS -->
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css">
 </head>
-<body>
+<body style="background-color: #FAF3F0;">
 <div class="container">
 	<div>
 		<jsp:include page="/inc/mainmenu.jsp"></jsp:include>
@@ -26,11 +26,7 @@
 	<br><br><br>
 	
 	<div class="text-center">
-		<h1>
-			<span class="table-danger">
-				&nbsp; 회원가입 &nbsp;
-			</span>
-		</h1>
+		<h1>&nbsp; 회원가입 &nbsp;</h1>
 		<br>
 		<div>
 			<h3>
@@ -48,17 +44,17 @@
 	<div style="text-align: center;">
 		<form action="<%=request.getContextPath()%>/member/insertMemberAction.jsp" method="post">
 			<table class="table table-bordered">
-				<tr class="table-danger">
-					<th class="table-danger">아이디</th>		
-					<td class="table-danger"><input type="text" name="memberId"></td>		
+				<tr style="background-color: #DBC4F0;">
+					<th>아이디</th>		
+					<td><input type="text" name="memberId"></td>		
 				</tr>
-				<tr class="table-danger">
-					<th class="table-danger">패스워드</th>		
-					<td class="table-danger"><input type ="password" name="memberPw"></td>		
+				<tr style="background-color: #DBC4F0;">
+					<th>패스워드</th>		
+					<td><input type ="password" name="memberPw"></td>		
 				</tr>
 			</table>
 			<br>
-			<button type="submit">가입</button>
+			<button style="background-color: #DBC4F0;" type="submit">가입</button>
 		</form>
 	</div>
 	<br><br><br><br><br><br><br>
