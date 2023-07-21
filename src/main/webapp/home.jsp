@@ -139,160 +139,175 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>게시판 홈페이지</title>
 	<!-- Bootstrap CSS -->
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css">
 </head>
 <body>
 <div class="container">
-<div class="row">
+	<div class="row">
 		<!-- 메인메뉴(가로) -->
-		<div>
-			<jsp:include page="/inc/mainmenu.jsp"></jsp:include	>
+		<jsp:include page="/inc/mainmenu.jsp"></jsp:include	>
+		
+		<br>
+		<br>
+		<br>
+
+		<!-- 서브메뉴(세로) subMenuList모델을 출력 -->
+		<div class="col-sm-2">	
+			<div style="text-align: center;">
+				<table class="table table-bordered">
+					<%
+						for(HashMap<String, Object> m : subMenuList) {
+					%>	
+						<tr class="table-danger">	
+							<td>					<!-- 자바문 (String),(Integer)생략가능 -->
+								<a href ="<%=request.getContextPath()%>/home.jsp?localName=<%=(String)m.get("localName")%>">
+									<%=(String)m.get("localName")%>(<%=(Integer)m.get("cnt")%>)</a>
+							</td>
+						</tr>
+					<%
+						}
+					%>
+				</table>
+			</div>
 		</div>
-	<div>
+		
+		<div class="col-sm-6">
+			<div style="text-align: center;">
+				<img src="<%=request.getContextPath()%>/img/dog.jpg" width="540px" height="440px">
+			</div>
+		</div>
+		
 		<!-- home 내용 : 로그인폼 / 카테고리별 게시글 5개씩 -->	
-			<!-- 로그인 폼 -->
-			<%
-				if(session.getAttribute("loginMemberId") == null) { // 로그인전이면 로그인폼출력
-			%>		
-					<h6 style="text-align: center;">
-						기간 : 2023.05.02 ~ 2023.05.15 <br> 
-						사용 언어 : Java, HTML, CSS, MariaDB
-					</h6>
-					
-					<div style=" margin: 0 5px; float:right;">
-					<form action="<%=request.getContextPath()%>/member/loginAction.jsp" method="post">
-						<table class="table">
+		<div class="col-sm-4">
+			<div style="text-align: center;">
+				<!-- 로그인 폼 -->
+				<%
+					if(session.getAttribute("loginMemberId") == null) { // 로그인전이면 로그인폼출력
+				%>		
+						<form action="<%=request.getContextPath()%>/member/loginAction.jsp" method="post">
+							<table class="table table-borderless">
+								<tr class="table-danger">
+									<th class="table-danger">아이디</th>
+									<td class="table-danger"><input type="text" name="memberId"></td>
+								</tr>
+								<tr class="table-danger">
+									<th class="table-danger">패스워드</th>
+									<td class="table-danger"><input type="password" name="memberPw"></td>
+								</tr>
+								<tr class="table-danger">
+									<td colspan="2" class="table-danger">
+										<button type="submit" style="float:right;">로그인</button>
+									</td>
+								</tr>
+							</table>
+						</form>
+						
+						<div style="text-align: center;" class="table-danger">
+							<h3>개발기술</h3>
+						</div>	
+				<%	
+					} else {
+				%>
+	     		<h2>
+		     		<span class="table-danger">
+		     			현재 <%=session.getAttribute("loginMemberId")%>으로 접속중
+		     		</span>
+	     		</h2>
+	     		<!-- 메인메뉴(가로) -->
+				<!-- 서버기술이기 때문에 ﹤% request...%﹥를 쓸 필요가 없음 -->
+	    	 <%
+	        	}
+	     	%>   
+			</div>
+			<br>
+			
+		</div>
+	</div>
+	<br>	
+		
+	<!---[시작] boardList--------------------------------------------------->
+	<div class="col-sm-13" style="text-align: center;">	
+				<table class="table table-bordered">
+					<tr>
+						<th class="table-danger">지역 이름</th>
+						<th class="table-danger">글 제목</th>
+						<th class="table-danger">생성일</th>
+					</tr>
+					<%
+						for(Board b : boardList) {
+					%>
 							<tr>
-								<td class="table-dark">아이디</td>
-								<td class="table-dark"><input type="text" name="memberId"></td>
-							</tr>
-							<tr>
-								<td class="table-dark">패스워드</td>
-								<td class="table-dark"><input type="password" name="memberPw"></td>
-							</tr>
-							<tr>
-								<td colspan="2" class="table-dark">
-									<button type="submit" style="float:right;">로그인</button>
+								<td><%=b.getLocalName()%></td>
+								<td>
+									<a href="<%=request.getContextPath()%>/board/boardOne.jsp?boardNo=<%=b.getBoardNo()%>">
+										<%=b.getBoardTitle()%>
+									</a>
 								</td>
-							</tr>
-						</table>
-					</form>
+								<td><%=b.getCreatedate().substring(0, 10)%></td>
+							</tr>	
+					<%
+						}
+					%>
 					
-			<%	
-				} else {
-			 %>
-     		<h2><%=session.getAttribute("loginMemberId")%>님</h2>
-     		<!-- 메인메뉴(가로) -->
-			<!-- 서버기술이기 때문에 ﹤% request...%﹥를 쓸 필요가 없음 -->
-    	 <%
-        	}
-     	%>   
+		</table>		
+	</div>
+	<!---[끝]boardList--------------------------------------------------->
+	
+	
+	<div class="container mt-3">
+		<ul class="pagination justify-content-center" style="margin:20px 0">
+			<%
+				//이전 페이지 버튼
+				if(currentPage > pageCount){
+			%>
+		   			<li class="page-item">
+		   				<a class="page-link text-dark" href="<%=request.getContextPath()%>/home.jsp?currentPage=<%=startPage-10 %>&localName=<%=localName%>">
+		   					Previous
+		   				</a>
+		   			</li>
+		   	<%
+				}
+		        for(int i = startPage; i <= endPage; i++){
+		        	if(i==currentPage){
+		    %>
+		        		<li class="page-item active">
+		        			<a class="page-link text-dark" href="<%=request.getContextPath()%>/home.jsp?currentPage=<%=i %>&localName=<%=localName%>">
+		        				<%=i %>
+		        			</a>
+		        		</li>
+		    <%
+		        	}else{
+		   	%>
+		       		<li class="page-item">
+		       			<a class="page-link text-dark" href="<%=request.getContextPath()%>/home.jsp?currentPage=<%=i %>&localName=<%=localName%>">
+		       				<%=i %>
+		       			</a>
+		       		</li>
+				<%
+		       		}
+		        }
+		    	//다음 페이지 버튼
+		    	if(currentPage < (lastPage-pageCount+1)){
+				%>
+				<li class="page-item">
+					<a class="page-link text-dark" href="<%=request.getContextPath()%>/home.jsp?currentPage=<%=endPage+1 %>&localName=<%=localName%>">
+						Next
+					</a>
+				</li>
+			<%
+				}
+			%>
+		</ul>
 	</div>
 	
-		<div class="col-sm-2 container" style=" margin: 0 5px; float:left: ;">	
-		<!-- 서브메뉴(세로) subMenuList모델을 출력 -->
-		<div style="margin-top: 32px; text-align: center;">
-			<table class="table table-bordered">
-				<%
-				for(HashMap<String, Object> m : subMenuList) {
-				%>	
-					<tr class="table-info">	
-						<td>													<!-- 자바문 (String),(Integer)생략가능 -->
-							<a href ="<%=request.getContextPath()%>/home.jsp?localName=<%=(String)m.get("localName")%>">
-								<%=(String)m.get("localName")%>(<%=(Integer)m.get("cnt")%>)</a>
-						</td>
-					</tr>
-				<%
-				}
-				%>
-			</table>
-		</div>
-		</div>
-		</div>
-		
-		<!---[시작] boardList--------------------------------------------------->
-<div class="col-sm-10">	
-			<table class="table">
-				<tr>
-					<th class="table-dark">지역 이름</th>
-					<th class="table-dark">글 제목</th>
-					<th class="table-dark">생성일</th>
-				</tr>
-				<%
-					for(Board b : boardList) {
-				%>
-						<tr class="table-info">
-							<td><%=b.getLocalName()%></td>
-							<td>
-								<a href="<%=request.getContextPath()%>/board/boardOne.jsp?boardNo=<%=b.getBoardNo()%>">
-									<%=b.getBoardTitle()%>
-								</a>
-							</td>
-							<td><%=b.getCreatedate().substring(0, 10)%></td>
-						</tr>	
-				<%
-					}
-				%>
-				
-	</table>		
-</div>
-</div>
-		
-		<!---[끝]boardList--------------------------------------------------->
-	<div class="container mt-3">
-	<ul class="pagination justify-content-center" style="margin:20px 0">
-		<%
-			//이전 페이지 버튼
-			if(currentPage > pageCount){
-		%>
-	   			<li class="page-item">
-	   				<a class="page-link text-dark" href="<%=request.getContextPath()%>/home.jsp?currentPage=<%=startPage-10 %>&localName=<%=localName%>">
-	   					Previous
-	   				</a>
-	   			</li>
-	   	<%
-			}
-	        for(int i = startPage; i <= endPage; i++){
-	        	if(i==currentPage){
-	    %>
-	        		<li class="page-item active">
-	        			<a class="page-link text-dark" href="<%=request.getContextPath()%>/home.jsp?currentPage=<%=i %>&localName=<%=localName%>">
-	        				<%=i %>
-	        			</a>
-	        		</li>
-	    <%
-	        	}else{
-	   	%>
-	       		<li class="page-item">
-	       			<a class="page-link text-dark" href="<%=request.getContextPath()%>/home.jsp?currentPage=<%=i %>&localName=<%=localName%>">
-	       				<%=i %>
-	       			</a>
-	       		</li>
-	       <%
-	       		}
-	        }
-	    	//다음 페이지 버튼
-	    	if(currentPage < (lastPage-pageCount+1)){
-	       %>
-			<li class="page-item">
-				<a class="page-link text-dark" href="<%=request.getContextPath()%>/home.jsp?currentPage=<%=endPage+1 %>&localName=<%=localName%>">
-					Next
-				</a>
-			</li>
-		<%
-			}
-		%>
-	</ul>
-	</div>
 		
 	<div>
 		<!-- include 페이지 : Copyright &copy; 구디아카데미 -->
 		<jsp:include page="/inc/copyright.jsp"></jsp:include>
 	</div>
-	
-	
-</div>	
+		
+</div>
 </body>
 </html>

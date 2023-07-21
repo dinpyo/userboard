@@ -48,55 +48,71 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>비밀변호 변경</title>
 	<!-- Bootstrap CSS -->
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css">
 </head>
 <body>
+<div class="container">
 	<div>
 		<jsp:include page="/inc/mainmenu.jsp"></jsp:include>
 	</div>
-	<h1>비밀번호 수정</h1>
-	<div>
-	<%
-		if(msg != null){
-	%>
-		<%=msg%>
-	<%	
-		}
-	%>
+	<br><br><br>
+	<div class="text-center">
+		<h1>
+			<span class="table-danger">
+				&nbsp; 비밀번호 변경 &nbsp;
+			</span>
+		</h1>
+		<br>
+		<div>
+			<h3>
+				<%
+					if(msg != null){
+				%>
+					<%=msg%>
+				<%	
+					}
+				%>
+			</h3>
+		</div>
+	</div>	
+	<br><br>
+	<div style="text-align: center;">
+		<form action="<%=request.getContextPath()%>/member/updateMemberAction.jsp" method="post" id="submit">
+			<table class="table table-bordered">
+				<tr class="table-danger">
+					<th class="table-danger">접속중인 아이디</th>
+					<td class="table-danger"><%=m.getMemberId()%></td>
+				</tr>
+				<tr class="table-danger">
+					<th class="table-danger">현재 비밀번호 입력 : </th>
+					<td class="table-danger">
+						<input type="password" name="currentPassword">
+					</td>
+				</tr>
+				<tr class="table-danger">
+					<th class="table-danger">새로운 비밀번호 입력 : </th>
+					<td class="table-danger">
+						<input type="password" name="newPassword">
+					</td>
+				</tr>
+				<tr class="table-danger">
+					<th class="table-danger">새로운 비밀번호 확인 : </th>
+					<td class="table-danger">
+						<input type="password" name="newPasswordCheck">
+					</td>
+				</tr>
+			</table>
+		</form>
 	</div>
-	<form action="<%=request.getContextPath()%>/member/updateMemberAction.jsp" method="post" id="submit">
-		<table class="table">
-			<tr>
-				<th class="table-dark">접속중인 아이디</th>
-				<td class="table-dark">
-					<%=m.getMemberId()%>
-				</td>
-			</tr>
-			<tr>
-				<th class="table-dark">현재 비밀번호 입력 : </th>
-				<td class="table-dark">
-					<input type="password" name="currentPassword">
-				</td>
-			</tr>
-			<tr>
-				<th class="table-dark">새로운 비밀번호 입력 : </th>
-				<td class="table-dark">
-					<input type="password" name="newPassword">
-				</td>
-			</tr>
-			<tr>
-				<th class="table-dark">새로운 비밀번호 확인 : </th>
-				<td class="table-dark">
-					<input type="password" name="newPasswordCheck">
-				</td>
-			</tr>
-		</table>
-	</form>
-	<form action="<%=request.getContextPath()%>/member/memberInformation.jsp" method="post" id="cancle"></form>
-		<button type="submit" form="submit">수정</button>
-		<button type="submit" form="cancle">취소</button>
+	<br>
+	<div style="text-align: center;">
+		<form action="<%=request.getContextPath()%>/member/memberInformation.jsp" method="post" id="cancle"></form>
+			<button type="submit" form="submit">수정</button>
+			<button type="submit" form="cancle">취소</button>
+	</div>	
+	<br><br><br><br><br><br><br>
 	<div>
 		<jsp:include page="/inc/copyright.jsp"></jsp:include>
 	</div>
@@ -105,5 +121,6 @@
 	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js"></script>
+</div>
 </body>
 </html>

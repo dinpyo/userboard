@@ -3,7 +3,6 @@
 <%@ page import = "java.net.*" %>
 <%@ page import="vo.*"%>
 <%
-
 	//인코딩
 	request.setCharacterEncoding("utf-8");
 

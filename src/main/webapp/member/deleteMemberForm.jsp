@@ -23,51 +23,67 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>회원 탈퇴</title>
 	<!-- Bootstrap CSS -->
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css">
 </head>
 <body>
+<div class="container">
 	<div>
 		<jsp:include page="/inc/mainmenu.jsp"></jsp:include>
 	</div>
-<div class="container">
-	<h1>회원탈퇴</h1>
-	<div>
-	<%
-		if(msg != null){
-	%>
-		<%=msg%>
-	<%	
-		}
-	%>
+	<br><br><br>
+	<div class="text-center">
+		<h1>
+			<span class="table-danger">
+				&nbsp; 회원탈퇴 &nbsp;
+			</span>	
+		</h1>
+	<br>
+		<div>
+			<h3>
+				<%
+					if(msg != null){
+				%>
+					<%=msg%>
+				<%	
+					}
+				%>
+			</h3>
+		</div>
 	</div>
+	<br><br>
+	<div style="text-align: center;">
+	
 	<form action="<%=request.getContextPath()%>/member/deleteMemberAction.jsp" method="post" id="submit">
-		<table class="table">
-			<tr>
-				<th class="table-dark">접속중인 아이디</th>
-				<td class="table-dark">
+		<table class="table table-bordered">
+			<tr class="table-danger">
+				<th class="table-danger">접속중인 아이디</th>
+				<td class="table-danger">
 					<%=loginMemberId%>
 				</td>
 			</tr>
-			<tr>
-				<th class="table-dark">비밀번호 입력 :</th>
-				<td class="table-dark">
+			<tr class="table-danger">
+				<th class="table-danger">비밀번호 입력 :</th>
+				<td class="table-danger">
 					<input type="password" name="password">
 				</td>
 			</tr>
 		</table>
 	</form>
+	<br>
 	<form action="<%=request.getContextPath()%>/member/memberInformation.jsp" method="post" id="cancle"></form>
 	<button type="submit" form="submit">탈퇴</button>
 	<button type="submit" form="cancle">취소</button>
+	</div>
+	<br><br><br><br><br><br><br>
 	<div>
 		<jsp:include page="/inc/copyright.jsp"></jsp:include>
 	</div>
-</div>
 	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
 	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js"></script>
+</div>
 </body>
 </html>
