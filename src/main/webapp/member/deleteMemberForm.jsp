@@ -60,9 +60,9 @@
 				</td>
 			</tr>
 			<tr style="background-color: #DBC4F0;">
-				<th>비밀번호 입력 :</th>
+				<th>비밀번호 입력</th>
 				<td>
-					<input type="password" name="password">
+					<input type="password" name="password" required="required">
 				</td>
 			</tr>
 		</table>

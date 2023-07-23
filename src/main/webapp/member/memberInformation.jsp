@@ -59,8 +59,7 @@
 	<div class="text-center">
 		<h1>회원 상세 정보</h1>
 	</div>
-	<br>	
-	<br>
+	<br><br>
 	<div style="text-align: center;">
 		<table class="table table-bordered">
 			<tr style="background-color: #DBC4F0;">
@@ -78,10 +77,9 @@
 				<td>
 					<%=m.getUpdatedate()%>
 				</td>
-			</tr>
-			
+			</tr>	
 			<tr style="background-color: #DBC4F0;">
-				<th >
+				<th>
 					<a style="color: black;" href="<%=request.getContextPath()%>/member/updateMemberForm.jsp">
 						비밀번호 변경
 					</a>

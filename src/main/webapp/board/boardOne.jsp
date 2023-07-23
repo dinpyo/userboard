@@ -112,68 +112,84 @@
 		addPage += "&boardNo=" + boardNo;
 	}
 	
+	// 요청받은 메세지가 있으면 저장
+	String msg = null;
+	if (request.getParameter("msg") != null) {
+		msg = request.getParameter("msg");
+	}
+		
 	// 3. 뷰 계층
 %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>게시글 상세보기</title>
 	<!-- Bootstrap CSS -->
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css">
 </head>
-<body>
+<body style="background-color: #FAF3F0;">
+<div class="container">
+
 	<!-- 메인메뉴(가로) -->
 	<div>
 		<jsp:include page="/inc/mainmenu.jsp"></jsp:include>
 	</div>
-	
-	<div class="container">
+	<br><br><br><br>
 	<!-- 3-1) board one 결과셋 -->
-	<h1>게시글</h1>
-	<table class="table">
-		<tr>
-			<th class="table-dark">번호</th>
-			<td class="table-dark"><%=board.getBoardNo()%></td>
-		</tr>
-		<tr>
-			<th class="table-dark">지역</th>
-			<td class="table-dark"><%=board.getLocalName()%></td>
-		</tr>
-		<tr>
-			<th class="table-dark">제목</th>
-			<td class="table-dark"><%=board.getBoardTitle()%></td>
-		</tr>
-		<tr>
-			<th class="table-dark">내용</th>
-			<td class="table-dark"><%=board.getBoardContent()%></td>
-		</tr>
-		<tr>
-			<th class="table-dark">아이디</th>
-			<td class="table-dark"><%=board.getMemberId()%></td>
-		</tr>
-		<tr>
-			<th class="table-dark">생성일</th>
-			<td class="table-dark"><%=board.getCreatedate().substring(0, 10)%></td>
-		</tr>
-		<tr>
-			<th class="table-dark">수정일</th>
-			<td class="table-dark"><%=board.getUpdatedate().substring(0, 10)%></td>
-		</tr>
-	</table>
-	
-		 <% // 게시물 작성자만 수정 삭제 가능
-            if(session.getAttribute("loginMemberId") != null && session.getAttribute("loginMemberId").equals(board.getMemberId())) {
-               String loginMemberId = (String)session.getAttribute("loginMemberId");
-         %>
-               <a class="btn btn-primary" href="<%=request.getContextPath() %>/board/updateBoardForm.jsp?boardNo=<%=board.getBoardNo() %>">수정</a>
-               <a class="btn btn-primary" href="<%=request.getContextPath() %>/board/deleteBoardAction.jsp?boardNo=<%=board.getBoardNo() %>">삭제</a>         
-         <%
-            }
-         %>
-	
-	<br>
+	<div class="text-center">
+		<h1>게시글 상세 정보</h1>
+		<br>
+	</div>
+	<div style="text-align: center;">
+		<!--  오류 메세지 표시 -->
+		<%
+			if(msg != null){
+		%>
+			<h3><%=msg%></h3>
+		<%	
+			}
+		%>
+		<br>
+		<table class="table">
+			<tr style="background-color: #DBC4F0;">
+				<th>번호</th>
+				<th>지역</th>
+				<th>제목</th>
+				<th style="width: 40%">게시글 내용</th>
+				<th>아이디</th>
+				<th>생성일</th>
+				<th>수정일</th>
+			</tr>
+			<tr style="background-color: white;">
+				<td><%=board.getBoardNo()%></td>
+				<td><%=board.getLocalName()%></td>
+				<td><%=board.getBoardTitle()%></td>
+				<td><%=board.getBoardContent()%></td>
+				<td><%=board.getMemberId()%></td>
+				<td><%=board.getCreatedate().substring(0, 10)%></td>
+				<td><%=board.getUpdatedate().substring(0, 10)%></td>
+			</tr>
+		</table>
+		
+		<% 
+			// 게시물 작성자만 수정 삭제 가능
+			if(session.getAttribute("loginMemberId") != null && session.getAttribute("loginMemberId").equals(board.getMemberId())) {
+		    	String loginMemberId = (String)session.getAttribute("loginMemberId");
+		%>
+				<a style="background-color: #DBC4F0;" class="btn" href="<%=request.getContextPath() %>/board/updateBoardForm.jsp?boardNo=<%=board.getBoardNo() %>">수정</a>
+		        <a style="background-color: #DBC4F0;" class="btn" href="<%=request.getContextPath() %>/board/deleteBoardAction.jsp?boardNo=<%=board.getBoardNo() %>">삭제</a>         
+		<%
+			}
+		%>
+	</div>
+	<br><br>
 	<!-- 3-2) comment 입력 : 세션유무에 따른 분기 -->
+	<div class="text-center">
+		<h1>댓글 등록</h1>
+		<br>
+	</div>
+	<div style="text-align: center;">
 	<%
 		// 로그인 사용자만 댓글 입력 허용
 		if(session.getAttribute("loginMemberId") != null) {
@@ -182,71 +198,82 @@
 	%>
 			<form action="<%=request.getContextPath()%>/board/insertCommentAction.jsp" method="post">
 				<input type="hidden" name="boardNo" value="<%=boardNo%>">
-				<input type="hidden" name="loginMemberId" value="<%=loginMemberId%>">
-	<br>			
+				<input type="hidden" name="loginMemberId" value="<%=loginMemberId%>">		
 				<table>
 					<tr>
-						<th>댓글 내용</th>
-						<td>
-							<textarea rows="2" cols="80" name="commentContent"></textarea>
-						</td>
+						<th>
+							<textarea rows="2" cols="150" name="commentContent"></textarea>
+						</th>
 					</tr>
 				</table>
-				<button type="submit">댓글입력</button>
+				<br>
+				<button style="background-color: #DBC4F0;" class="btn" type="submit">댓글입력</button>
 			</form>
 	<%		
 		}
 	%>
-	<br>
+	</div>
+	<br><br>
 	<!-- 3-3) comment list 결과셋 -->
-	<h1>댓글</h1>
+	<div style="text-align: center;">
+		<h1>댓글 목록</h1>
+		<br>
+	</div>
+	<div style="text-align: center;">
 	<table class="table">
-		<tr>
-			<th class="table-dark">댓글 내용</th>
-			<th class="table-dark">아이디</th>
-			<th class="table-dark">생성일</th>
-			<th class="table-dark">수정일</th>
-			<th class="table-dark">수정</th>
-			<th class="table-dark">삭제</th>
-		</tr>
+		<tr style="background-color: #DBC4F0;">
+			<th style="width: 40%">댓글 내용</th>
+			<th>아이디</th>
+			<th>생성일</th>
+			<th>수정일</th>
+			<th>수정</th>
+			<th>삭제</th>
+		</tr>	
 		<%
 			for(Comment c : commentList) {
 		%>		
-		
-				<tr class="table-info">
+				<tr style="background-color: white;">
 					<td><%=c.getCommentContent()%></td>	
 					<td><%=c.getMemberId()%></td>	
 					<td><%=c.getCreatedate()%></td>	
 					<td><%=c.getUpdatedate()%></td>	
-					<td><a href="<%=request.getContextPath()%>/board/updateCommentForm.jsp?commentNo=<%=c.getCommentNo()%>&boardNo=<%=c.getBoardNo()%>">수정</a></td>	
-					<td><a href="<%=request.getContextPath()%>/board/deleteCommentAction.jsp?commentNo=<%=c.getCommentNo()%>&boardNo=<%=c.getBoardNo()%>">삭제</a></td>	
-				</tr>
-				
+					<td><a style="color: black;" href="<%=request.getContextPath()%>/board/updateCommentForm.jsp?commentNo=<%=c.getCommentNo()%>&boardNo=<%=c.getBoardNo()%>">수정</a></td>	
+					<td><a style="color: black;" href="<%=request.getContextPath()%>/board/deleteCommentAction.jsp?commentNo=<%=c.getCommentNo()%>&boardNo=<%=c.getBoardNo()%>">삭제</a></td>	
+				</tr>	
 		<%	
 			}
 		%>
 	</table>
-	<div>
+	</div>
+	<br>
+	
+	<div style="text-align: center;">
 		<%
 			if(currentPage>1){
 		%>
-				<a class="btn btn-primary" href="<%=request.getContextPath()%>/board/boardOne.jsp?currentPage=<%=currentPage-1%>&addPage=<%=addPage%>">이전</a>
+				<a style="background-color: #DBC4F0;" class="btn" href="<%=request.getContextPath()%>/board/boardOne.jsp?currentPage=<%=currentPage-1%>&addPage=<%=addPage%>">이전</a>
 		<%	
 			}
 		%>
-				<a class="btn btn-primary" href="<%=request.getContextPath()%>/board/boardOne.jsp?currentPage=<%=currentPage%>&addPage=<%=addPage%>"><%=currentPage%></a>
+				<a style="background-color: #DBC4F0;" class="btn" href="<%=request.getContextPath()%>/board/boardOne.jsp?currentPage=<%=currentPage%>&addPage=<%=addPage%>"><%=currentPage%></a>
 		<%
 			if(currentPage<lastPage){
 		%>
-				<a class="btn btn-primary" href="<%=request.getContextPath()%>/board/boardOne.jsp?currentPage=<%=currentPage+1%>&addPage=<%=addPage%>">다음</a>
+				<a style="background-color: #DBC4F0;" class="btn" href="<%=request.getContextPath()%>/board/boardOne.jsp?currentPage=<%=currentPage+1%>&addPage=<%=addPage%>">다음</a>
 		<%
 			}
 		%>
 	</div>
+	<br><br>
+	<!-- include 페이지 : Copyright &copy; 구디아카데미 -->
+	<div>
+		<jsp:include page="/inc/copyright.jsp"></jsp:include>
+	</div>	
+	<br>
 	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
 	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js"></script>
-	</div>
+</div>	
 </body>
 </html>

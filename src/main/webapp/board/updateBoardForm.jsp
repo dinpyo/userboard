@@ -2,8 +2,7 @@
 <%@ page import = "java.sql.*" %>
 <%@ page import = "java.util.*" %>
 <%@ page import="vo.*" %>
-<%
-	
+<%	
 	// 세션 유효성 검사
 	if(session.getAttribute("loginMemberId") == null) {				
 		response.sendRedirect(request.getContextPath()+"/home.jsp");
@@ -59,66 +58,71 @@
 		local.setLocalName(selRs.getString("local_name"));
 		localNameList.add(local);
 	}
-	
 %>
 
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>게시글 수정</title>
 	<!-- Bootstrap CSS -->
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css">
 </head>
-<body>
-	 <form action="<%=request.getContextPath()%>/board/updateBoardAction.jsp">
-      <h2>게시글 수정</h2>
-      <hr>
-         <table class="table">
-            <tr>
-               <th>board_no</th>
-               <td>
-                  <input type="number" name="boardNo" readonly="readonly" value="<%=board.getBoardNo()%>">
-               </td>
-            </tr>
-            <tr>
-               <th>member_id</th>
-               <td>
-                  <input type="text" name="memberId" readonly="readonly" value="<%=loginMemberId %>">
-               </td>
-            </tr>
-            <tr>
-               <th>local_name</th>
-               <td>
-                  <select name="localName">
-                     <%
-                        for(Local local : localNameList){
-                     %>
-                           <option value="<%=local.getLocalName()%>"><%=local.getLocalName()%></option>
-                     <%
-                        }
-                     %>
-                  </select>
-               </td>
-            </tr>
-            <tr>
-               <th>board_title</th>
-               <td>
-                  <input type="text" name="boardTitle" value="<%=board.getBoardTitle()%>">
-               </td>
-            </tr>
-			<tr>
-               <th>board_content</th>
-               <td>
-                  <input type="text" name="boardContent" value="<%=board.getBoardContent()%>">
-               </td>
-            </tr>
-            <tr>
-               <td colspan="2">
-                  <button class="btn btn-primary" type="submit">게시글 수정</button>
-               </td>
-            </tr>
-         </table>
-      </form>	
+<body style="background-color: #FAF3F0;">
+<div class="container">
+	<div>
+		<jsp:include page="/inc/mainmenu.jsp"></jsp:include>
+	</div>
+	<br><br><br>
+	<div class="text-center">
+		<h1>게시글 수정</h1>
+	</div>
+	<br><br>
+	<div style="text-align: center;">
+	<form action="<%=request.getContextPath()%>/board/updateBoardAction.jsp">
+		<table class="table">
+			<tr style="background-color: #DBC4F0;">
+				<th>번호</th>
+				<td>
+					<input type="number" name="boardNo" readonly="readonly" value="<%=board.getBoardNo()%>">
+				</td>
+			</tr>
+			<tr style="background-color: #DBC4F0;">
+				<th>아이디</th>
+				<td>
+					<input type="text" name="memberId" readonly="readonly" value="<%=loginMemberId%>">
+				</td>
+			</tr>
+			<tr style="background-color: #DBC4F0;">
+				<th>지역 이름</th>
+				<td>
+					<select name="localName">
+						<%
+							for(Local local : localNameList){
+						%>
+								<option value="<%=local.getLocalName()%>"><%=local.getLocalName()%></option>
+						<%
+							}
+						%>
+					</select>
+				</td>
+			</tr >
+			<tr style="background-color: #DBC4F0;">
+				<th>게시글 제목</th>
+				<td>
+					<input type="text" name="boardTitle" value="<%=board.getBoardTitle()%>" required="required">
+				</td>
+			</tr>
+			<tr style="background-color: #DBC4F0;">
+				<th>게시글 내용</th>
+				<td>
+					<input type="text" name="boardContent" value="<%=board.getBoardContent()%>" required="required">
+				</td>
+			</tr>
+		</table>
+		<button style="background-color: #DBC4F0;" class="btn" type="submit">수정</button>
+	</form>
+	</div>
+</div>      
 </body>
 </html>

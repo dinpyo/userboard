@@ -46,11 +46,11 @@
 			<table class="table table-bordered">
 				<tr style="background-color: #DBC4F0;">
 					<th>아이디</th>		
-					<td><input type="text" name="memberId"></td>		
+					<td><input type="text" name="memberId" required="required"></td>		
 				</tr>
 				<tr style="background-color: #DBC4F0;">
 					<th>패스워드</th>		
-					<td><input type ="password" name="memberPw"></td>		
+					<td><input type ="password" name="memberPw" required="required"></td>		
 				</tr>
 			</table>
 			<br>

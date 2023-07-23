@@ -148,10 +148,7 @@
 	<div class="row">
 		<!-- 메인메뉴(가로) -->
 		<jsp:include page="/inc/mainmenu.jsp"></jsp:include	>
-		
-		<br>
-		<br>
-		<br>
+		<br><br><br>
 
 		<!-- 서브메뉴(세로) subMenuList모델을 출력 -->
 		<div class="col-sm-2">	
@@ -190,11 +187,11 @@
 							<table class="table table-borderless">
 								<tr style="background-color: #DBC4F0;">
 									<th>아이디</th>
-									<td><input type="text" name="memberId"></td>
+									<td><input type="text" name="memberId" required="required"></td>
 								</tr>
 								<tr style="background-color: #DBC4F0;">
-									<th>패스워드</th>
-									<td><input type="password" name="memberPw"></td>
+									<th>비밀번호</th>
+									<td><input type="password" name="memberPw" required="required"></td>
 								</tr>
 								<tr style="background-color: #DBC4F0;">
 									<td colspan="2">
@@ -205,14 +202,15 @@
 						</form>
 						
 						<div style="text-align: center; background-color: #DBC4F0;">
+							<br>
 							<h3>개발기술</h3>
-							<br><br><br><br><br><br><br><br><br>
+							<br><br><br><br><br><br><br><br>
 							
 						</div>	
 				<%	
 					} else {
 				%>
-	     				<h2><%=session.getAttribute("loginMemberId")%>으로 접속중</h2>
+	     				<h2><%=session.getAttribute("loginMemberId")%>님 접속중</h2>
 	     		<!-- 메인메뉴(가로) -->
 				<!-- 서버기술이기 때문에 ﹤% request...%﹥를 쓸 필요가 없음 -->
 	    	 	<%
@@ -298,10 +296,9 @@
 			%>
 		</ul>
 	</div>
-	
 		
+	<!-- include 페이지 : Copyright &copy; 구디아카데미 -->
 	<div>
-		<!-- include 페이지 : Copyright &copy; 구디아카데미 -->
 		<jsp:include page="/inc/copyright.jsp"></jsp:include>
 	</div>	
 	<br>

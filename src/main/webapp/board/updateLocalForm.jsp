@@ -58,31 +58,44 @@
 	<!-- Bootstrap CSS -->
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css">
 </head>
-<body>
-	<div class="container">
+<body style="background-color: #FAF3F0;">
+<div class="container">
+	<div>
+		<jsp:include page="/inc/mainmenu.jsp"></jsp:include>
+	</div>
+	<br><br><br>
+	<div class="text-center">
 		<h1>지역 수정</h1>
+	</div>
+	<br><br>
+	<div style="text-align: center;">
 		<form action="<%=request.getContextPath()%>/board/updateLocalAction.jsp" method="post">
 			<table class="table">
-				<tr>
-					<th class="table-dark">현재 지역명</th>
-					<td class="table-dark">
+				<tr style="background-color: #DBC4F0;">
+					<th>현재 지역명</th>
+					<td>
 						<%=localName%>
 						<input type="hidden" name="oldLocalName" value="<%=localName%>">
 					</td>
 				</tr>
-				<tr>
-					<th class="table-dark">새로운 지역</th>
-					<td class="table-dark">
-						<input type="text" name="localName">
+				<tr style="background-color: #DBC4F0;">
+					<th>새로운 지역</th>
+					<td>
+						<input type="text" name="localName" required="required">
 					</td>
 				</tr>
 			</table>
-			<button type="submit">수정</button>
+			<button style="background-color: #DBC4F0;" class="btn" type="submit">수정</button>
 		</form>
+	</div>	
+	<br><br><br><br><br><br><br>	
+	<div>
+		<jsp:include page="/inc/copyright.jsp"></jsp:include>
 	</div>
 	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
 	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js"></script>
+</div>
 </body>
 </html>

@@ -33,21 +33,36 @@
 	Class.forName(driver);
 	Connection conn = null;
 	conn = DriverManager.getConnection(dburl, dbuser, dbpw);
+	int row = 0;
 	
-	// 지역 생성(INSERT)
-	PreparedStatement localStmt = null;
-	String localSql = "INSERT INTO local(local_name, createdate, updatedate) VALUES(?, NOW(), NOW())";
-	localStmt = conn.prepareStatement(localSql);
-	localStmt.setString(1, localName);
-	System.out.println(localStmt + "<-- insertLocalAction localStmt");
-	int row = localStmt.executeUpdate();
-	
-	// 제대로 작동하는지 확인하기
-	if(row == 1) {
-		System.out.println("지역 추가 성공");
-	} else {
-		System.out.println("지역 추가 실패");
-		response.sendRedirect(request.getContextPath() +"/board/insertLocalForm.jsp");
+	// 지역 조회(SELECT)
+	PreparedStatement localSelectStmt = null;
+	ResultSet localRs = null;
+	String localSelectSql = "SELECT COUNT(*) FROM local WHERE local_name = ?";
+	localSelectStmt = conn.prepareStatement(localSelectSql);
+	localSelectStmt.setString(1, localName);
+	localRs = localSelectStmt.executeQuery();
+	if(localRs.next()) {
+		row = localRs.getInt(1);
 	}
-	response.sendRedirect(request.getContextPath() +"/home.jsp");
+	
+	if(row > 0) {
+		System.out.println("지역 추가 실패");
+		msg =  URLEncoder.encode("이미 등록된 지역입니다.", "utf-8");
+		response.sendRedirect(request.getContextPath() +"/board/insertLocalForm.jsp?msg="+msg);
+		return;	
+	} else {
+		// 지역 생성(INSERT)
+		PreparedStatement localInsertStmt = null;
+		String localInsertSql = "INSERT INTO local(local_name, createdate, updatedate) VALUES(?, NOW(), NOW())";
+		localInsertStmt = conn.prepareStatement(localInsertSql);
+		localInsertStmt.setString(1, localName);
+		System.out.println(localInsertStmt + "<-- insertLocalAction localStmt");
+		row = localInsertStmt.executeUpdate();
+		
+		System.out.println("지역 추가 성공");
+		response.sendRedirect(request.getContextPath() +"/home.jsp");
+		return;
+	}
+	
 %>

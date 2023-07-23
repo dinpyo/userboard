@@ -84,19 +84,19 @@
 				<tr style="background-color: #DBC4F0;">
 					<th>현재 비밀번호 입력</th>
 					<td>
-						<input type="password" name="currentPassword">
+						<input type="password" name="currentPassword" required="required">
 					</td>
 				</tr>
 				<tr style="background-color: #DBC4F0;">
 					<th>새로운 비밀번호 입력</th>
 					<td>
-						<input type="password" name="newPassword">
+						<input type="password" name="newPassword" required="required">
 					</td>
 				</tr>
 				<tr style="background-color: #DBC4F0;">
 					<th>새로운 비밀번호 확인</th>
 					<td>
-						<input type="password" name="newPasswordCheck">
+						<input type="password" name="newPasswordCheck" required="required">
 					</td>
 				</tr>
 			</table>
