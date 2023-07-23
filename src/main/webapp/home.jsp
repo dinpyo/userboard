@@ -21,7 +21,7 @@
 	int totalRow = 0;
 	
 	int pageCount = 10; //한번에 출력될 페이징 버튼 수(1,2,3,4--)
-	//1~10번을 눌러도 1~10페이지만 출력되도록 설정
+	// 1~10번을 눌러도 1~10페이지만 출력되도록 설정
 	int startPage = ((currentPage - 1) / pageCount) * pageCount + 1; //페이징 버튼 시작 값
 	int endPage = startPage + pageCount - 1; //페이징 버튼 종료 값
 	
@@ -102,7 +102,7 @@
 	System.out.println(boardList + " <--home boardList");
 	System.out.println(boardList.size()+ " <--home boardList.size()");
 
-	//페이지의 전체 행 구하는 쿼리문
+	// 페이지의 전체 행 구하는 쿼리문
 	String totalRowSql = null;
 	PreparedStatement totalStmt = null;
 	ResultSet totalRs = null;
@@ -112,13 +112,13 @@
 	System.out.println(totalStmt+ " <--totalStmt");
 	System.out.println(totalRs+ "<--totalRs");
 		
-	//전체 페이지수
+	// 전체 페이지수
 	if(totalRs.next()){
 		totalRow=totalRs.getInt("count(*)");
 	}
 	int lastPage = totalRow/rowPerPage;
 	
-	//마지막 페이지가 나머지가 0이 아니면 페이지수 1추가
+	// 마지막 페이지가 나머지가 0이 아니면 페이지수 1추가
 	if(totalRow%rowPerPage!=0){
 		lastPage++;
 	}
@@ -148,8 +148,12 @@
 	<div class="row">
 		<!-- 메인메뉴(가로) -->
 		<jsp:include page="/inc/mainmenu.jsp"></jsp:include	>
-		<br><br><br>
-
+		<br><br>
+		
+		<div style="text-align: center;">
+			<h1>국내 여행 스토리</h1>
+			<br>
+		</div>
 		<!-- 서브메뉴(세로) subMenuList모델을 출력 -->
 		<div class="col-sm-2">	
 			<div style="text-align: center;">
@@ -172,7 +176,7 @@
 		
 		<div class="col-sm-6">
 			<div style="text-align: center;">
-				<img src="<%=request.getContextPath()%>/img/dog.jpg" width="540px" height="440px">
+				<img src="<%=request.getContextPath()%>/img/jido.jpg" width="540px" height="440px">
 			</div>
 		</div>
 		
@@ -203,10 +207,18 @@
 						
 						<div style="text-align: center; background-color: #DBC4F0;">
 							<br>
-							<h3>개발기술</h3>
-							<br><br><br><br><br><br><br><br>
-							
-						</div>	
+							<h5>지역별 회원 전용 게시판 프로젝트 <br>
+								기간 : 2023.05.02 ~ 05.15 <br>
+							</h5>
+							<br>
+							<ul>
+								<li>Eclipse(2022-12(4.23.0), JDK(17.0.7) </li>
+								<li>HTML5, CSS3, bootstrap5 </li>
+								<li>Apache tomcat10.1.11</li>
+								<li>Mariadb(10.5.19), HeidiSQL(11.3.0)</li>
+					       </ul>
+					       <br><br>
+						</div>				
 				<%	
 					} else {
 				%>
@@ -254,7 +266,7 @@
 	<div class="container mt-3">
 		<ul class="pagination justify-content-center" style="margin:20px 0">
 			<%
-				//이전 페이지 버튼
+				// 이전 페이지 버튼
 				if(currentPage > pageCount){
 			%>
 		   			<li class="page-item">
@@ -283,7 +295,7 @@
 				<%
 		       		}
 		        }
-		    	//다음 페이지 버튼
+		    	// 다음 페이지 버튼
 		    	if(currentPage < (lastPage-pageCount+1)){
 				%>
 				<li class="page-item">
