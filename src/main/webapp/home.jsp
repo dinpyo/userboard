@@ -191,11 +191,11 @@
 							<table class="table table-borderless">
 								<tr style="background-color: #DBC4F0;">
 									<th>아이디</th>
-									<td><input type="text" name="memberId" required="required"></td>
+									<td><input type="text" name="memberId" value="admin" required="required"></td>
 								</tr>
 								<tr style="background-color: #DBC4F0;">
 									<th>비밀번호</th>
-									<td><input type="password" name="memberPw" required="required"></td>
+									<td><input type="password" name="memberPw" value="1234" required="required"></td>
 								</tr>
 								<tr style="background-color: #DBC4F0;">
 									<td colspan="2">
@@ -208,13 +208,13 @@
 						<div style="text-align: center; background-color: #DBC4F0;">
 							<br>
 							<h5>지역별 회원 전용 게시판 프로젝트 <br>
-								기간 : 2023.05.02 ~ 05.15 <br>
+								기간 : 2023.05.02 ~ 2023.05.15 <br>
 							</h5>
 							<br>
 							<ul>
 								<li>Eclipse(2022-12(4.23.0), JDK(17.0.7) </li>
 								<li>HTML5, CSS3, bootstrap5 </li>
-								<li>Apache tomcat10.1.11</li>
+								<li>Apache tomcat(10.1.11)</li>
 								<li>Mariadb(10.5.19), HeidiSQL(11.3.0)</li>
 					       </ul>
 					       <br><br>
