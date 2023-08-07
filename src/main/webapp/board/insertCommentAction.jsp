@@ -48,7 +48,7 @@
 	PreparedStatement Stmt = null;
 	ResultSet rs = null;
 	String sql = null;
-	String Sql = "INSERT INTO COMMENT(board_no, comment_content, member_id, createdate, updatedate) value(?, ?, ?, NOW(), NOW())";
+	String Sql = "INSERT INTO comment(board_no, comment_content, member_id, createdate, updatedate) value(?, ?, ?, NOW(), NOW())";
 	Stmt = conn.prepareStatement(Sql);
 	Stmt.setInt(1, boardNo);
 	Stmt.setString(2, commentContent);
