@@ -22,7 +22,7 @@
 	// local 전체 조회 (SELECT)
 	PreparedStatement localStmt = null;
 	ResultSet localRs = null;
-	String localSql = "SELECT local_name localName, createdate, updatedate FROM local;";
+	String localSql = "SELECT local_name localName, createdate, updatedate FROM local";
 	localStmt = conn.prepareStatement(localSql);
 	System.out.println(localStmt + " <-- selectLocal localStmt");
 	localRs = localStmt.executeQuery();
@@ -37,6 +37,12 @@
 	}
 	System.out.println(localList + "<--selectLocal localList");
 	System.out.println(localList.size() + "<--selectLocal localList.size()");
+	
+	String msg = null;
+	if (request.getParameter("msg") != null){
+		msg = request.getParameter("msg");
+	}
+	
 %>
 <!DOCTYPE html>
 <html>
@@ -57,6 +63,17 @@
 			<h1>지역 목록</h1>
 		</div>
 		<br><br>
+		<div>
+			<h3>
+				<%
+					if(msg != null){
+				%>
+					<%=msg%>
+				<%	
+					}
+				%>
+			</h3>
+		</div>
 		<div style="text-align: center;">
 			<table class="table">
 				<tr style="background-color: #DBC4F0;">

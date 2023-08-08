@@ -137,7 +137,7 @@
 	</div>
 	<br><br><br><br>
 	<!-- 3-1) board one 결과셋 -->
-	<div class="text-center">
+	<div>
 		<h1>게시글 상세 정보</h1>
 		<br>
 	</div>
@@ -177,15 +177,15 @@
 			if(session.getAttribute("loginMemberId") != null && session.getAttribute("loginMemberId").equals(board.getMemberId())) {
 		    	String loginMemberId = (String)session.getAttribute("loginMemberId");
 		%>
-				<a style="background-color: #DBC4F0;" class="btn" href="<%=request.getContextPath() %>/board/updateBoardForm.jsp?boardNo=<%=board.getBoardNo() %>">수정</a>
-		        <a style="background-color: #DBC4F0;" class="btn" href="<%=request.getContextPath() %>/board/deleteBoardAction.jsp?boardNo=<%=board.getBoardNo() %>">삭제</a>         
+				<a style="background-color: #DBC4F0;" class="btn" href="<%=request.getContextPath()%>/board/updateBoardForm.jsp?boardNo=<%=board.getBoardNo() %>">수정</a>
+		        <a style="background-color: #DBC4F0;" class="btn" href="<%=request.getContextPath()%>/board/deleteBoardAction.jsp?boardNo=<%=board.getBoardNo() %>">삭제</a>         
 		<%
 			}
 		%>
 	</div>
 	<br><br>
 	<!-- 3-2) comment 입력 : 세션유무에 따른 분기 -->
-	<div class="text-center">
+	<div>
 		<h1>댓글 등록</h1>
 		<br>
 	</div>
@@ -202,7 +202,7 @@
 				<table>
 					<tr>
 						<th>
-							<textarea rows="2" cols="150" name="commentContent"></textarea>
+							<textarea rows="2" cols="120" name="commentContent"></textarea>
 						</th>
 					</tr>
 				</table>
@@ -215,7 +215,7 @@
 	</div>
 	<br><br>
 	<!-- 3-3) comment list 결과셋 -->
-	<div style="text-align: center;">
+	<div>
 		<h1>댓글 목록</h1>
 		<br>
 	</div>

@@ -139,6 +139,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=0">
 <title>게시판 홈페이지</title>
 	<!-- Bootstrap CSS -->
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css">
@@ -151,7 +152,7 @@
 		<br><br>
 		
 		<div style="text-align: center;">
-			<h1>국내 여행 스토리</h1>
+			<h1>국내 식도락 여행</h1>
 			<br>
 		</div>
 		<!-- 서브메뉴(세로) subMenuList모델을 출력 -->

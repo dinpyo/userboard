@@ -2,6 +2,7 @@
 <%@ page import="java.sql.*" %>
 <%@ page import="java.util.*" %>
 <%@ page import="vo.*" %>
+<%@ page import = "java.net.*" %>
 <%
 	//세션 유효성 검사
 	if(session.getAttribute("loginMemberId") == null) {				
@@ -41,8 +42,9 @@
 	if(boardCklRs.next()) {
 		cnt = boardCklRs.getInt("cnt");
 	}
-	if (cnt != 0) {		// 해당 지역이름이 있으면 selectLocal.jsp로
-		response.sendRedirect(request.getContextPath()+"/board/selectLocal.jsp");
+	if (cnt != 0) {		// 해당 지역에 게시글이 있으면 selectLocal.jsp로
+		String msg = URLEncoder.encode("게시글이 있어 삭제 할 수 없습니다.", "utf-8");
+		response.sendRedirect(request.getContextPath()+"/board/selectLocal.jsp?msg="+msg);
 		return;
 	}
 	// localName 삭제(DELETE)

@@ -33,7 +33,7 @@
 		response.sendRedirect(request.getContextPath() + "/member/updateMemberForm.jsp?msg=" + msg);
 		return;
 	}
-	// 입력값과 요청값이 다르면 메세지 저장하고 다시 폼으로 
+	// 입력값과 요청값이 같으면 메세지 저장하고 다시 폼으로 
 	if (currentPassword.equals(newPassword)) {
 		String msg = URLEncoder.encode("현재 비밀번호와 다른 비밀번호를 입력 후 수정을 눌러주세요", "utf-8");
 		response.sendRedirect(request.getContextPath() + "/member/updateMemberForm.jsp?msg=" + msg);

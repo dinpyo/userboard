@@ -52,7 +52,7 @@
 	
 	// 실행 결과
 	int row = updateLocalStmt.executeUpdate();
-	if(row == 1){ 
+	if(row > 0){ 
 		System.out.println("지역이름 수정 성공");
 	} else { 
 		System.out.println("지역이름 수정 실패"); 

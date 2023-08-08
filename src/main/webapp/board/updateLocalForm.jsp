@@ -2,6 +2,7 @@
 <%@ page import="java.sql.*" %>
 <%@ page import="java.util.*" %>
 <%@ page import="vo.*" %>
+<%@ page import = "java.net.*" %>
 <%
 	//세션 유효성 검사
 	if(session.getAttribute("loginMemberId") == null) {				
@@ -44,11 +45,16 @@
 	if(boardCklRs.next()) {
 		cnt = boardCklRs.getInt("cnt");
 	}
-	if (cnt != 0) {		// 해당 지역이 있으면 다시 selectLocal.jsp로
-		response.sendRedirect(request.getContextPath()+"/board/selectLocal.jsp");
+	if (cnt != 0) {		// 해당 지역에 게시글이 있으면 다시 selectLocal.jsp로
+		String msg = URLEncoder.encode("게시글이 있어 수정할 수 없습니다.", "utf-8");
+		response.sendRedirect(request.getContextPath()+"/board/selectLocal.jsp?msg="+msg);
 		return;
 	}
 	
+	String msg = null;
+	if (request.getParameter("msg") != null){
+		msg = request.getParameter("msg");
+	}
 %>
 <!DOCTYPE html>
 <html>
@@ -68,6 +74,17 @@
 		<h1>지역 수정</h1>
 	</div>
 	<br><br>
+	<div>
+		<h3>
+			<%
+				if(msg != null){
+			%>
+				<%=msg%>
+			<%	
+				}
+			%>
+		</h3>
+	</div>
 	<div style="text-align: center;">
 		<form action="<%=request.getContextPath()%>/board/updateLocalAction.jsp" method="post">
 			<table class="table">
