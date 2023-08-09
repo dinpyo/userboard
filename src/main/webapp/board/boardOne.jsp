@@ -202,7 +202,7 @@
 				<table>
 					<tr>
 						<th>
-							<textarea rows="2" cols="120" name="commentContent"></textarea>
+							<textarea rows="2" cols="150" name="commentContent"></textarea>
 						</th>
 					</tr>
 				</table>
