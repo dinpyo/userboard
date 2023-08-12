@@ -54,9 +54,11 @@
 <head>
 <meta charset="UTF-8">
 <title>게시글 추가</title>
-</head>
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+	<!-- 파비콘 설정-->
+	<link rel="icon" href="<%=request.getContextPath()%>/img/userboard.png">
+</head>
 <body style="background-color: #FAF3F0;">
 <div class="container">
 	<div>

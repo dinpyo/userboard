@@ -17,6 +17,8 @@
 <title>회원가입</title>
 	<!-- Bootstrap CSS -->
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css">
+	<!-- 파비콘 설정-->
+	<link rel="icon" href="<%=request.getContextPath()%>/img/userboard.png">
 </head>
 <body style="background-color: #FAF3F0;">
 <div class="container">
